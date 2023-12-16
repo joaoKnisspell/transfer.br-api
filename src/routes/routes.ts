@@ -1,7 +1,10 @@
 import { FastifyInstance } from 'fastify'
+import { knex } from '../database'
 
 export async function apiRoutes(app: FastifyInstance) {
-  await app.get('/', async (req, res) => {
-    await res.status(200).send('Aqui serão listadas as transações!')
+  app.get('/', async () => {
+    const initialData = await knex('sqlite_schema').select('*')
+
+    return initialData
   })
 }
