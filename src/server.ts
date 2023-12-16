@@ -1,5 +1,6 @@
 import fastify from 'fastify'
 import { apiRoutes } from './routes/routes'
+import { env } from './env'
 
 export const app = fastify()
 
@@ -9,8 +10,8 @@ app.register(apiRoutes, {
 
 app
   .listen({
-    port: 3333,
+    port: env.SERVER_ROUTE,
   })
   .then(() => {
-    return console.log('🚀 Server runing on port: 3333')
+    return console.log(`🚀 Server runing on port: ${env.SERVER_ROUTE}`)
   })
