@@ -3,9 +3,9 @@ import type { Knex } from 'knex'
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable('transactions', (table) => {
     table.uuid('id').primary()
+    table.uuid('session_id').index()
     table.string('name').notNullable()
-    table.decimal('number', 10, 2).notNullable() // Tamanho do número = 10 caracteres e número de casas decimais = 2
-    table.uuid('session_id')
+    table.decimal('amount', 10, 2).notNullable()
     table.timestamp('created_at').defaultTo(knex.fn.now()).notNullable()
   })
 }
