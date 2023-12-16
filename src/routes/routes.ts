@@ -52,16 +52,14 @@ export async function apiRoutes(app: FastifyInstance) {
 
     const { name, amount, type } = newTranscationBodySchema.parse(req.body)
 
-    const transaction = await knex('transactions')
-      .insert({
-        id: randomUUID(),
-        name,
-        amount: type === 'credit' ? amount : amount * -1,
-        session_id: sessionId,
-      })
-      .returning('*')
+    await knex('transactions').insert({
+      id: randomUUID(),
+      name,
+      amount: type === 'credit' ? amount : amount * -1,
+      session_id: sessionId,
+    })
 
-    return res.status(201).send(transaction)
+    return res.status(201).send('Transação criada com sucesso! ✅')
     // return res.status(201).send('Transação criada com sucesso! ✅')
   })
 

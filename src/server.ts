@@ -1,15 +1,5 @@
-import fastify from 'fastify'
-import { apiRoutes } from './routes/routes'
+import { app } from './app'
 import { env } from './env'
-import cookie from '@fastify/cookie'
-
-export const app = fastify()
-
-app.register(cookie)
-
-app.register(apiRoutes, {
-  prefix: '/transactions',
-})
 
 app
   .listen({
