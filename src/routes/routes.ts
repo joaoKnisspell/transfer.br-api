@@ -60,7 +60,6 @@ export async function apiRoutes(app: FastifyInstance) {
     })
 
     return res.status(201).send('Transação criada com sucesso! ✅')
-    // return res.status(201).send('Transação criada com sucesso! ✅')
   })
 
   app.get('/:id', { preHandler: [checkSessionIdCookie] }, async (req) => {

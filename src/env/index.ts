@@ -1,5 +1,13 @@
-import 'dotenv/config'
+import { config } from 'dotenv'
 import { z } from 'zod'
+
+if (process.env.NODE_ENVIRONMENT === 'test') {
+  config({
+    path: '.env.test',
+  })
+} else {
+  config()
+}
 
 const envSchema = z.object({
   NODE_ENVIRONMENT: z
